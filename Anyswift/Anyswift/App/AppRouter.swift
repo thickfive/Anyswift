@@ -10,6 +10,7 @@ import SwiftUI
 public enum AppRouterDestination: Hashable {
     case login
     case home
+    case webview(String)
 }
 
 extension NavigationManager {
@@ -19,6 +20,7 @@ extension NavigationManager {
                 switch destination {
                 case .login: return EmptyView()
                 case .home: return EmptyView()
+                case .webview(let url): return WebView(url: url)
                 }
             }
             return nil

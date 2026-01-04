@@ -27,6 +27,14 @@ struct AppScene16: Scene {
                 .environmentObject(navigationRouter)
                 ModalView(viewModel: modalViewModel)
             }
+            .environment(\.openURL, OpenURLAction { url in
+                if url.scheme?.hasPrefix("http") == true {
+                    navigationRouter.navigate(to: AppRouterDestination.webview(url.absoluteString))
+                } else {
+                    UIApplication.shared.open(url)
+                }
+                return .handled
+            })
         }
     }
 }
