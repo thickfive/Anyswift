@@ -22,19 +22,19 @@ struct AppScene16: Scene {
                     }
                     .withNavigationDestinations()
                 }
-                .environment(\.layoutDirection, .leftToRight)
                 .environmentObject(modalViewModel)
                 .environmentObject(navigationRouter)
+                .environment(\.layoutDirection, .leftToRight)
+                .environment(\.openURL, OpenURLAction { url in
+                    if url.scheme?.hasPrefix("http") == true {
+                        navigationRouter.navigate(to: AppRouterDestination.webview(url.absoluteString))
+                    } else {
+                        UIApplication.shared.open(url)
+                    }
+                    return .handled
+                })
                 ModalView(viewModel: modalViewModel)
             }
-            .environment(\.openURL, OpenURLAction { url in
-                if url.scheme?.hasPrefix("http") == true {
-                    navigationRouter.navigate(to: AppRouterDestination.webview(url.absoluteString))
-                } else {
-                    UIApplication.shared.open(url)
-                }
-                return .handled
-            })
         }
     }
 }

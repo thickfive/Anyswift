@@ -28,6 +28,14 @@ extension View {
         }
     }
     
+    public func applyIf(_ condition: Bool, apply: (Self) -> Self, elseApply: (Self) -> Self) -> Self {
+        if condition {
+            apply(self)
+        } else {
+            elseApply(self)
+        }
+    }
+    
     /// Conditionally applies a view transformation, erasing the return type to `some View`.
     ///
     /// When `condition` is `true`, the `apply` closure is executed and its resulting view is returned.
@@ -48,6 +56,15 @@ extension View {
             apply(self)
         } else {
             self
+        }
+    }
+    
+    @ViewBuilder
+    public func applyIf(_ condition: Bool, apply: (Self) -> some View, elseApply: (Self) -> some View) -> some View {
+        if condition {
+            apply(self)
+        } else {
+            elseApply(self)
         }
     }
 }
