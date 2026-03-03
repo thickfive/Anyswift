@@ -5,6 +5,13 @@ import PackageDescription
 
 let package = Package(
     name: "DebugDependencies",
+    platforms: [
+        .iOS(.v15),
+        .tvOS(.v15),
+        .macOS(.v13),
+        .watchOS(.v9),
+        .visionOS(.v1)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -13,7 +20,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/QMUI/LookinServer/", .upToNextMajor(from: "1.2.8"))
+        .package(url: "https://github.com/QMUI/LookinServer/", .upToNextMajor(from: "1.2.8")),
+        .package(url: "https://github.com/kean/Pulse", .upToNextMajor(from: "5.1.4"))
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -23,7 +31,11 @@ let package = Package(
         // dependencies: ["LookinServer"]
         .target(
             name: "DebugDependencies",
-            dependencies: ["LookinServer"]
+            dependencies: [
+                "LookinServer",
+                .product(name: "Pulse", package: "Pulse"),
+                .product(name: "PulseUI", package: "Pulse"),
+            ]
         ),
         .testTarget(
             name: "DebugDependenciesTests",

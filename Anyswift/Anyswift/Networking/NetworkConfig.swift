@@ -13,7 +13,7 @@ public struct NetworkConfig {
 }
 
 public let networkConfig = NetworkConfig(
-    baseURL: "http://192.168.1.101:8000",
+    baseURL: "http://192.168.1.102:8000",
     headers: [:]
 )
 

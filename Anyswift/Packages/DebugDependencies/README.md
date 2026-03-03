@@ -34,3 +34,6 @@ func setup() {
 - 第二次编译就能导入/删除相关依赖   
 
 ⚠️ 如果不清楚相关依赖是否会对上架包产生影响, 建议上架打包前在 `PROJECT > Package Dependencies` 中去掉 `Packages/DebugDependencies`  
+
+## 编译错误处理
+如果 `Package@release.swift` 或者 `Package@debug.swift` 相关依赖或者版本设置不正确, 导致错误的配置写进了 `Package.swift` 从而编译失败，在此之后修改前者就无效了, 因为 `Run Script` 脚本需要编译成功后才能执行. 因此, 需要直接修改 `Package.swift` 保证能够先编译成功一次，然后再写入正确的配置.

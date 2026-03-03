@@ -7,6 +7,7 @@
 
 #if canImport(Pulse)
 import Pulse
+import Foundation
 
 public class PulseLogger: NSObject, LogProtocol {
     

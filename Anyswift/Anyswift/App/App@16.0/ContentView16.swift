@@ -25,6 +25,15 @@ struct ContentView16: View {
                 NavigationLink(destination: HtmlToAttributedString()) {
                     Text("HtmlToAttributedString")
                 }
+                NavigationLink(destination: ActivityIndicatorViews()) {
+                    Text("ActivityIndicatorView")
+                }
+                NavigationLink(destination: ContentTransition()) {
+                    Text("ContentTransition")
+                }
+                NavigationLink(destination: MatchedGeometryEffect()) {
+                    Text("MatchedGeometryEffect")
+                }
             }
             .navigationTitle("Packages")
             .navigationBarTitleDisplayMode(.automatic)
